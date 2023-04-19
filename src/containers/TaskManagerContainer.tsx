@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { v4 as uuidv4 } from "uuid";
 import { Filter, Task } from "../types";
 import TaskManager from "../components/TaskManager";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Container = tw.main`
   relative
@@ -25,13 +26,17 @@ const H1 = styled.h1`
 `;
 
 const TaskManagerContainer: React.FC = () => {
-  const defaultTasks: Task[] = [
-    { id: uuidv4(), name: "item 1", completed: false },
-    { id: uuidv4(), name: "item 2", completed: false },
-  ];
+  const [localStorageTasks, setLocalStorageTasks] = useLocalStorage<Task[]>(
+    "tasks",
+    []
+  );
+  const [localStorageFilter, setLocalStorageFilter] = useLocalStorage<Filter>(
+    "filter",
+    "all"
+  );
 
-  const [tasks, setTasks] = useState<Task[]>(defaultTasks ?? []);
-  const [filter, setFilter] = useState<Filter>("all");
+  const [tasks, setTasks] = useState<Task[]>(localStorageTasks);
+  const [filter, setFilter] = useState<Filter>(localStorageFilter);
 
   const filteredTasks = useMemo(() => {
     if (filter === "all") return tasks;
@@ -42,16 +47,20 @@ const TaskManagerContainer: React.FC = () => {
 
   const onAdd = useCallback(
     (task: Task) => {
-      setTasks((prev) => [task, ...prev]);
+      const updatedTasks = [task, ...tasks];
+      setTasks(updatedTasks);
+      setLocalStorageTasks(updatedTasks);
     },
-    [setTasks]
+    [tasks, setTasks, setLocalStorageTasks]
   );
 
   const onRemove = useCallback(
     (deleteId: Task["id"]) => {
-      setTasks((prev) => prev.filter(({ id }) => id !== deleteId));
+      const updatedTasks = tasks.filter(({ id }) => id !== deleteId);
+      setTasks(updatedTasks);
+      setLocalStorageTasks(updatedTasks);
     },
-    [setTasks]
+    [tasks, setTasks, setLocalStorageTasks]
   );
 
   const onClickCompleted = useCallback(
@@ -60,15 +69,17 @@ const TaskManagerContainer: React.FC = () => {
         task.id === toggleId ? { ...task, completed: !task.completed } : task
       );
       setTasks(updatedTasks);
+      setLocalStorageTasks(updatedTasks);
     },
-    [tasks, setTasks]
+    [tasks, setTasks, setLocalStorageTasks]
   );
 
   const onClickFilter = useCallback(
     (value: Filter) => {
       setFilter(value);
+      setLocalStorageFilter(value);
     },
-    [setFilter]
+    [setFilter, setLocalStorageFilter]
   );
 
   return (
