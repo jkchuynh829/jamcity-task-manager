@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "DarkerGrotesque";
+  font-style: normal;
+  font-weight: 400;
+  src: local("DarkerGrotesque"), local("DarkerGrotesque-Regular"),
+    url("./DarkerGrotesque-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DarkerGrotesque";
+  font-style: normal;
+  font-weight: 600;
+  src: local("DarkerGrotesque"), local("DarkerGrotesque-SemiBold"),
+    url("./DarkerGrotesque-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DarkerGrotesque";
+  font-style: normal;
+  font-weight: 900;
+  src: local("DarkerGrotesque"), local("DarkerGrotesque-Black"),
+    url("./DarkerGrotesque-Black.ttf") format("truetype");
+}
