@@ -18,28 +18,43 @@ const List = tw.ul`
   bg-white
   mb-12
 `;
-const Form = tw.form`mb-4 md:mb-8`;
+const Form = tw.form`
+  flex flex-row justify-between
+  h-8 md:h-12 rounded-md overflow-hidden
+  font-darkergrotesque font-semibold text-xl md:text-2xl
+  shadow-inner
+  focus:shadow-2xl
+  focus:border-2
+  focus:border-pink
+  bg-white
+  mb-4 md:mb-8
+`;
 const FiltersContainer = tw.section`
   flex
   justify-end
   w-full
   h-10
-  mb-4
   gap-3
   overflow-hidden
+  mb-4 md:mb-8
 `;
 const Input = tw.input`
-  w-full
+  flex-1
+  w-full h-full
   flex items-center
-  h-12 md:h-20 rounded-md
-  font-darkergrotesque font-semibold text-xl md:text-3xl
-  shadow-inner
-  focus:shadow-2xl
-  bg-white
   p-4
   outline-none
-  focus:border-2
-  focus:border-pink
+`;
+
+const FormButton = styled.button<{ disabled: boolean }>`
+  ${tw`
+    flex justify-center items-center
+    h-full w-36
+    bg-pink
+    text-white
+    font-darkergrotesque font-semibold text-xl md:text-2xl
+  `}
+  ${({ disabled }) => (disabled ? tw`bg-gray` : tw`bg-pink text-white`)}
 `;
 
 type ButtonProps = {
@@ -95,6 +110,9 @@ const TaskManager: React.FC<TaskManagerProps> = ({
           onChange={(e) => setValue(e.target.value)}
           placeholder="Add new task..."
         />
+        <FormButton onClick={onSubmit} disabled={!value}>
+          Add Task
+        </FormButton>
       </Form>
       <FiltersContainer>
         <Button

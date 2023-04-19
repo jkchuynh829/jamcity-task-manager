@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import tw from "twin.macro";
 import styled from "@emotion/styled";
-import { v4 as uuidv4 } from "uuid";
 import { Filter, Task } from "../types";
 import TaskManager from "../components/TaskManager";
 import useLocalStorage from "../hooks/useLocalStorage";
