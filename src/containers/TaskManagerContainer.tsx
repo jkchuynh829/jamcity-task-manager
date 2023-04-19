@@ -9,19 +9,20 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Container = tw.main`
   relative
   flex items-center flex-col
-  p-12
+  p-6
+  md:p-12
   bg-background
   h-screen
   z-0
 `;
 
 const H1 = styled.h1`
-  ${tw`relative font-darkergrotesque text-6xl font-black mb-6`}
+  ${tw`relative font-darkergrotesque text-5xl md:text-6xl font-black mb-6 text-center`}
   ::before {
     content: "";
     transform: translate(-50%, -100%);
     z-index: -1;
-    ${tw`absolute w-full bg-pink h-4 top-full left-1/2`}
+    ${tw`absolute w-full bg-pink h-3 md:h-4 top-full left-1/2`}
   }
 `;
 

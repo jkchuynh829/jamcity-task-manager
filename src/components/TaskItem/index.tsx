@@ -7,8 +7,8 @@ import TrashIcon from "../TrashIcon";
 const ListItem = styled.li`
   ${tw`
     flex items-center
-    h-20
-    font-darkergrotesque font-semibold text-3xl
+    h-14 md:h-20
+    font-darkergrotesque font-semibold text-xl md:text-3xl
     p-4
     border-b
     border-gray
@@ -42,7 +42,7 @@ const TaskItemName = styled.div<TaskItemNameProps>`
     ${({ completed }) => (completed ? tw`block` : tw`hidden`)}
     content: "";
     width: 125%;
-    ${tw`absolute w-full bg-pink h-1 top-5 left-0`}
+    ${tw`absolute w-full bg-pink h-1 top-4 md:top-5 left-0`}
 `;
 
 const Button = tw.button`opacity-10 hover:opacity-100`;

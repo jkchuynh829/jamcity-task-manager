@@ -16,8 +16,9 @@ const List = tw.ul`
   overflow-hidden
   rounded-md
   bg-white
+  mb-12
 `;
-const Form = tw.form`mb-8`;
+const Form = tw.form`mb-4 md:mb-8`;
 const FiltersContainer = tw.section`
   flex
   justify-end
@@ -30,8 +31,8 @@ const FiltersContainer = tw.section`
 const Input = tw.input`
   w-full
   flex items-center
-  h-20 rounded-md
-  font-darkergrotesque font-semibold text-3xl
+  h-12 md:h-20 rounded-md
+  font-darkergrotesque font-semibold text-xl md:text-3xl
   shadow-inner
   focus:shadow-2xl
   bg-white
@@ -48,15 +49,17 @@ type ButtonProps = {
 const Button = styled.button<ButtonProps>`
   ${tw`
     text-lg
+    flex-1
     flex
     justify-center
     items-center
     px-6
     font-darkergrotesque
-    font-black
+    font-semibold md:font-black
     rounded-lg
   `}
-  ${({ selected = false }) => (selected ? tw`text-white bg-pink` : tw`bg-gray`)}
+  ${({ selected = false }) =>
+    selected ? tw`text-white bg-pink font-black` : tw`bg-gray`}
 `;
 
 interface TaskManagerProps {
